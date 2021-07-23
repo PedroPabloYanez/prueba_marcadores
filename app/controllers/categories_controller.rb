@@ -13,15 +13,18 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   def new
     @category = Category.new
+    @categories = Category.all
   end
 
   # GET /categories/1/edit
   def edit
+    @categories = Category.all
   end
 
   # POST /categories or /categories.json
   def create
     @category = Category.new(category_params)
+    @categories = Category.all
 
     respond_to do |format|
       if @category.save
@@ -64,6 +67,6 @@ class CategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def category_params
-      params.require(:category).permit(:name, :status, :marker_id)
+      params.require(:category).permit(:name, :status, :category_id)
     end
 end

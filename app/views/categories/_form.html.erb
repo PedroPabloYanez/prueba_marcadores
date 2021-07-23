@@ -17,13 +17,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :status %>
-    <%= form.check_box :status %>
+    <%= form.label :status, '¿Quieres que tu categoria sea privada?' %>
+    <%= form.select :status, {"Privado" => true, "Público" => false} %>
   </div>
 
   <div class="field">
-    <%= form.label :marker_id %>
-    <%= form.text_field :marker_id %>
+    <%= form.label :parent_category %>
+    <%= form.select :category_id, @categories.map { |category| [category.name, category.id] }, prompt: "Seleccione una opción" %>
   </div>
 
   <div class="actions">

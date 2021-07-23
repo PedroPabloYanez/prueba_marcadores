@@ -16,8 +16,20 @@
     <% @categories.each do |category| %>
       <tr>
         <td><%= category.name %></td>
-        <td><%= category.status %></td>
-        <td><%= category.marker %></td>
+        <td><%= if category.status == true 
+                        "Privado"
+                else
+                        "Publico"
+                end
+        %></td>
+        <td>
+          <%= if category.parent
+                  category.parent.name 
+                else 
+                  'No tiene categoria padre'
+                end 
+          %>
+        </td>
         <td><%= link_to 'Show', category %></td>
         <td><%= link_to 'Edit', edit_category_path(category) %></td>
         <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>

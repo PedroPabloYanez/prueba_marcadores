@@ -1,3 +1,3 @@
 class Type < ApplicationRecord
-  belongs_to :category
+  has_many :markers, dependent: :destroy
 end

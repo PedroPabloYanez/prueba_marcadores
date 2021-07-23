@@ -4,6 +4,7 @@ class MarkersController < ApplicationController
   # GET /markers or /markers.json
   def index
     @markers = Marker.all
+    @marker = Marker.new
   end
 
   # GET /markers/1 or /markers/1.json
@@ -17,6 +18,8 @@ class MarkersController < ApplicationController
 
   # GET /markers/1/edit
   def edit
+    @types = Type.all
+    @categories = Category.all
   end
 
   # POST /markers or /markers.json
@@ -32,6 +35,7 @@ class MarkersController < ApplicationController
         format.json { render json: @marker.errors, status: :unprocessable_entity }
       end
     end
+    @types = Type.all
   end
 
   # PATCH/PUT /markers/1 or /markers/1.json
@@ -45,6 +49,7 @@ class MarkersController < ApplicationController
         format.json { render json: @marker.errors, status: :unprocessable_entity }
       end
     end
+    @types = Type.all
   end
 
   # DELETE /markers/1 or /markers/1.json
@@ -64,6 +69,10 @@ class MarkersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def marker_params
-      params.require(:marker).permit(:url, :name)
+      params.require(:marker).permit(:url, :name, :type_id, :category_id)
+    end
+
+    def category_params
+      params.require(:category)
     end
 end
