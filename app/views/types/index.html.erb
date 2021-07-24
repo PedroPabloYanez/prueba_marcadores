@@ -1,8 +1,15 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-header d-flex justify-content-start">
+    <div class="m-0">  
+      <%= link_to new_type_path, {remote: true, class: "btn btn-success text-left", id: "anadir-marker-btn"}  do %>
+        <span class="fas fa-plus-square" ></span>
+      <% end %>
+    </div>
+    <h1 class="h3 mx-5 text-gray-800 text-center">Type</h1>
+  </div>
+</div>
 
-<h1>Types</h1>
-
-<table>
+<table class="table border-primary">
   <thead>
     <tr>
       <th>Name</th>
@@ -12,16 +19,11 @@
 
   <tbody>
     <% @types.each do |type| %>
-      <tr>
-        <td><%= type.name %></td>
-        <td><%= link_to 'Show', type %></td>
-        <td><%= link_to 'Edit', edit_type_path(type) %></td>
-        <td><%= link_to 'Destroy', type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <%= render 'types/type', type: type %>
     <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Type', new_type_path %>
+<%= render 'modal_types' %>

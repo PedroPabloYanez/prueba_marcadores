@@ -3,11 +3,13 @@ class Category < ApplicationRecord
   has_many :children, class_name: 'Category', dependent: :destroy
   has_many :markers, dependent: :destroy
 
-  # def status_private
-  #   if status == true
-  #       'Privado'
-  #   else
-  #       'Publico'
-  #   end
-  # end
+  
+
+  def status_boolean
+    if status == true
+        'Privado'
+    else
+        'Publico'
+    end
+  end
 end

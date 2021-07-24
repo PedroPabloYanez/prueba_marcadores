@@ -30,9 +30,11 @@ class MarkersController < ApplicationController
       if @marker.save
         format.html { redirect_to @marker, notice: "Marker was successfully created." }
         format.json { render :show, status: :created, location: @marker }
+        format.js 
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @marker.errors, status: :unprocessable_entity }
+        format.js { render :new }
       end
     end
     @types = Type.all
@@ -44,9 +46,11 @@ class MarkersController < ApplicationController
       if @marker.update(marker_params)
         format.html { redirect_to @marker, notice: "Marker was successfully updated." }
         format.json { render :show, status: :ok, location: @marker }
+        format.js 
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @marker.errors, status: :unprocessable_entity }
+        format.js { render :edit }
       end
     end
     @types = Type.all
@@ -58,6 +62,7 @@ class MarkersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to markers_url, notice: "Marker was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 
