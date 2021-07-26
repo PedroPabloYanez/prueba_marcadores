@@ -3,8 +3,17 @@ class MarkersController < ApplicationController
 
   # GET /markers or /markers.json
   def index
-    @markers = Marker.all
     @marker = Marker.new
+    if params[:search]
+      @markers = Marker.where("name LIKE ? OR url LIKE ?", "%#{params[:search]}%" , "%#{params[:search]}%") 
+      respond_to do |format|
+        format.html {redirect_to root_path}
+      format.json {render json: @markers}
+      format.js 
+      end
+    else
+      @markers = Marker.all
+    end
   end
 
   # GET /markers/1 or /markers/1.json

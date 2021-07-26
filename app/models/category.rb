@@ -3,7 +3,9 @@ class Category < ApplicationRecord
   has_many :children, class_name: 'Category', dependent: :destroy
   has_many :markers, dependent: :destroy
 
-  
+  validates :name, presence: true,  uniqueness: { case_sensitive: false }
+
+  validates :name, uniqueness: { case_sensitive: false }
 
   def status_boolean
     if status == true

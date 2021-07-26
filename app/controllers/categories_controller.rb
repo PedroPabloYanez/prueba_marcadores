@@ -21,6 +21,45 @@ class CategoriesController < ApplicationController
     @categories = Category.all
   end
 
+
+
+  def api
+
+    hash = {}
+    marcadores = Marker.all
+    categorias = Category.all
+    array_marker = []
+    array_category = []
+
+    marcadores.each do |marker|
+      objeto = {
+        name: marker.name, 
+        url: marker.url,
+        type_id: marker.type_id,
+        category_id: marker.category_id,
+        categories: marker.category
+      } 
+      array_marker.push(objeto)
+    end
+    hash["Marcadores"] = array_marker
+
+    categorias.each do |category|
+      objeto_category = {
+        name: category.name,
+        status: category.status,
+        category_id: category.category_id,
+        sub_categories: category.children
+      }
+      array_category.push(objeto_category)    
+    end
+    hash["Categorias"] = array_category
+
+    render json: hash
+  end
+
+
+
+
   # POST /categories or /categories.json
   def create
     @category = Category.new(category_params)

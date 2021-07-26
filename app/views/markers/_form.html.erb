@@ -28,6 +28,6 @@
     <%= form.select :category_id, Category.all.collect {|c| [c.name, c.id]}, {} ,id: :marker_category_id  %>
   </div>
   <div class="actions">
-    <%= form.submit data: { confirm: '¿estas seguro?' }  %>
+    <%= form.submit class: "btn btn-secondary", data: { confirm: '¿estas seguro?' }  %>
   </div>
 <% end %>
