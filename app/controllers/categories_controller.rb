@@ -21,10 +21,7 @@ class CategoriesController < ApplicationController
     @categories = Category.all
   end
 
-
-
   def api
-
     hash = {}
     marcadores = Marker.all
     categorias = Category.all
@@ -56,9 +53,6 @@ class CategoriesController < ApplicationController
 
     render json: hash
   end
-
-
-
 
   # POST /categories or /categories.json
   def create
@@ -97,7 +91,7 @@ class CategoriesController < ApplicationController
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @category.errors, status: :unprocessable_entity }
-        format.js {render :update}
+        format.js {render :edit}
       end
     end
   end

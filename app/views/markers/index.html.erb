@@ -2,15 +2,15 @@
 
 </div>
 
-<%= form_tag "/search/create", method: :get, remote: true, id: "search-form" do %>
-  <%= text_field_tag :keyword, nil, placeholder: "Qué estás buscando"  %>
-  <%= content_tag :button, type: :submit do %>
+<%= form_tag "/search/create", method: :get, remote: true, id: "search-form", class: "d-flex me-auto m-2" do %>
+  <%= text_field_tag :keyword, nil, placeholder: "Qué Name estás buscando", class:"form-control me-2"  %>
+  <%= content_tag :button, type: :submit, class:"btn btn-outline-success" do %>
     Buscar
   <% end %>
 <% end %>
 
 
-<div class="card">
+<div class="card ">
   <div class="card-header d-flex justify-content-start">
     <div class="m-0">  
       <%= link_to new_marker_path, {remote: true, class: "btn btn-success text-left", id: "anadir-marker-btn"}  do %>
